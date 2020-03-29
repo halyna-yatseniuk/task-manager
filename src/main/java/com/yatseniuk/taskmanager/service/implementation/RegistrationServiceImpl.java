@@ -16,7 +16,6 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
     private static final Logger LOG = LoggerFactory.getLogger(RegistrationServiceImpl.class);
