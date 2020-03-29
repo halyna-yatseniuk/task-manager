@@ -24,13 +24,15 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = modelMapper;
     }
 
-    private User findById(String id) {
+    @Override
+    public User findById(String id) {
         LOG.info("Finding a user with id " + id);
         return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundEntityException(ErrorMessages.FAIL_TO_FIND_A_USER.getMessage()));
     }
 
     public UserGeneralDTO getById(String id) {
+        LOG.info("Getting a user with id " + id);
         return modelMapper.map(findById(id), UserGeneralDTO.class);
     }
 }

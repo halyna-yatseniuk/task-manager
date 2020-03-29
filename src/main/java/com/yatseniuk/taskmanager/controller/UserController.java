@@ -1,7 +1,6 @@
 package com.yatseniuk.taskmanager.controller;
 
 import com.yatseniuk.taskmanager.dto.UserGeneralDTO;
-import com.yatseniuk.taskmanager.dto.UserRegistrationDTO;
 import com.yatseniuk.taskmanager.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

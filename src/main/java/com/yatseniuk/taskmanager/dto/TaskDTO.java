@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -13,8 +13,8 @@ import java.util.List;
 public class TaskDTO {
     private String title;
     private String description;
-    private String ownerId;
+    private String owner;
     private LocalDateTime creationDateTime;
     private LocalDateTime modificationDateTime;
-    private List<UserRegistrationDTO> viewers;
+    private Set<UserGeneralDTO> viewers;
 }

@@ -28,13 +28,27 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.getById(id));
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<TaskDTO>> getAll(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.getAllByUserId(id));
+    }
+
     @PatchMapping("/{id}")
     public void edit(@PathVariable String id, @RequestBody TaskSaveDTO taskSaveDTO) {
         taskService.edit(id, taskSaveDTO);
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<TaskDTO>> getAll(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(taskService.getAllByUserId(id));
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        taskService.delete(id);
+    }
+
+//    @PostMapping("/{taskId}/viewer/{userId}")
+//    public void share(@PathVariable String userId, @PathVariable String taskId) {
+//        taskService.addPeople(userId, taskId);
+//    }
+    @PostMapping("/{taskId}/viewer/{userId}")
+    public void share(@PathVariable String userId, @PathVariable String taskId, @RequestParam String action) {
+        taskService.shareTaskWithUser(userId, taskId, action);
     }
 }

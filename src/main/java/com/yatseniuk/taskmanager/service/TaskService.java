@@ -16,5 +16,5 @@ public interface TaskService {
 
     void delete(String id);
 
-    void shareWithUser(String userId, String taskId);
+    void shareTaskWithUser(String userId, String taskId, String action);
 }

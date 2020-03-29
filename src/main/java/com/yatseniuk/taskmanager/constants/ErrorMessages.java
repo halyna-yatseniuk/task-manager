@@ -8,7 +8,9 @@ public enum ErrorMessages {
     FAIL_TO_LOGIN_WITH_WRONG_PASSWORD("Entered password is not correct"),
 
     FAIL_TO_FIND_A_USER("There is no such a user"),
-    FAIL_TO_FIND_A_TASK("There is no such a task");
+    FAIL_TO_FIND_A_TASK("There is no such a task"),
+
+    WRONG_TASK_ACTION("Wrong action was used while sharing task");
 
     private String message;
 
