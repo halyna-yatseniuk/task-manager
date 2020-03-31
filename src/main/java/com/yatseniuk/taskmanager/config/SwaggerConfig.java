@@ -1,7 +1,6 @@
 package com.yatseniuk.taskmanager.config;
 
 import com.google.common.collect.Lists;
-import com.yatseniuk.taskmanager.constants.ConstantValues;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +18,8 @@ import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
 
+import static com.yatseniuk.taskmanager.constants.ConstantValues.*;
+
 @Configuration
 @EnableSwagger2
 
@@ -26,23 +27,6 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-
-//        Docket docket =
-//                new Docket(DocumentationType.SWAGGER_2)
-//                        .useDefaultResponseMessages(false)
-//                        .pathMapping("/")
-//                        .apiInfo(ApiInfo.DEFAULT)
-//                        .forCodeGeneration(true)
-//                        .genericModelSubstitutes(ResponseEntity.class)
-//                        .ignoredParameterTypes(Pageable.class)
-//                        .ignoredParameterTypes(java.sql.Date.class)
-//                        .directModelSubstitute(java.time.LocalDate.class, java.sql.Date.class)
-//                        .directModelSubstitute(java.time.ZonedDateTime.class, Date.class)
-//                        .directModelSubstitute(java.time.LocalDateTime.class, Date.class)
-//                        .securityContexts(Lists.newArrayList(securityContext()))
-//                        .securitySchemes(Lists.newArrayList(apiKey()))
-//                        .useDefaultResponseMessages(false);
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(false)
                 .pathMapping("/")
@@ -75,7 +59,7 @@ public class SwaggerConfig {
     }
 
     private ApiKey apiKey() {
-        return new ApiKey("JWT", ConstantValues.AUTHORIZATION_HEADER.getValue(), "header");
+        return new ApiKey(JWT.getValue(), AUTHORIZATION_HEADER.getValue(), HEADER.getValue());
     }
 
     private SecurityContext securityContext() {
@@ -87,10 +71,10 @@ public class SwaggerConfig {
 
     private List<SecurityReference> defaultAuth() {
         AuthorizationScope authorizationScope =
-                new AuthorizationScope("global", "accessEverything");
+                new AuthorizationScope(GLOBAL_SCOPE.getValue(), SCOPE_DESCRIPTION.getValue());
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return Lists.newArrayList(new SecurityReference("JWT", authorizationScopes));
+        return Lists.newArrayList(new SecurityReference(JWT.getValue(), authorizationScopes));
     }
 
     private boolean include(String path) {

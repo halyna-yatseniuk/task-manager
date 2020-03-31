@@ -12,7 +12,12 @@ public enum ErrorMessages {
 
     WRONG_TASK_ACTION("Wrong action was used while sharing task"),
 
-    UNAUTHORIZED("You have to be authorized to perform the action");
+    UNAUTHORIZED("You have to be authorized to perform the action"),
+    EXPIRED_TOKEN("Token is expired"),
+    FAIL_TO_AUTHENTICATE("JWT Authentication failed"),
+    FAIL_TO_REFRESH_TOKEN("JWT refresh failed"),
+    INVALID_TOKEN("Token is not valid"),
+    CANNOT_RETRIEVE_USER_DATA("Fail to retrieve username from token");
 
     private String message;
 

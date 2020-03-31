@@ -1,6 +1,10 @@
 package com.yatseniuk.taskmanager.security;
 
+import com.yatseniuk.taskmanager.constants.ErrorMessages;
 import com.yatseniuk.taskmanager.dto.token.JwtTokenDTO;
+import com.yatseniuk.taskmanager.exceptions.InvalidTokenException;
+import com.yatseniuk.taskmanager.exceptions.JWTAuthenticationException;
+import com.yatseniuk.taskmanager.exceptions.RefreshTokenException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.TextCodec;
 import org.slf4j.Logger;
@@ -14,6 +18,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Objects;
+
+import static com.yatseniuk.taskmanager.constants.ConstantValues.AUTHORIZATION_HEADER;
+import static com.yatseniuk.taskmanager.constants.ConstantValues.AUTH_HEADER_PREFIX;
 
 @Component
 public class TokenManagement {
@@ -51,6 +58,7 @@ public class TokenManagement {
                 .setExpiration(new Date(nowMillis + expirationTimeRefresh))
                 .signWith(signatureAlgorithm, decodeSecretKey).compact();
 
+        LOG.info("Tokens generated successfully");
         return new JwtTokenDTO(token, refreshToken);
     }
 
@@ -58,15 +66,15 @@ public class TokenManagement {
         if (refreshToken != null && validateRefreshToken(refreshToken)) {
             try {
                 String email = getUserEmail(refreshToken);
-                JwtTokenDTO jwtDto = generateAccessAndRefreshTokens(email);
-                LOG.info("Tokens refreshed successfully!");
-                return jwtDto;
+                JwtTokenDTO jwtTokenDTO = generateAccessAndRefreshTokens(email);
+                LOG.info("Tokens refreshed successfully");
+                return jwtTokenDTO;
 
             } catch (JwtException e) {
-                throw new RuntimeException("REFRESH_TOKEN_EXCEPTION");
+                throw new RefreshTokenException(ErrorMessages.FAIL_TO_REFRESH_TOKEN.getMessage());
             }
         } else {
-            throw new RuntimeException("JWT_AUTHENTICATION_EXCEPTION");
+            throw new JWTAuthenticationException(ErrorMessages.FAIL_TO_AUTHENTICATE.getMessage());
         }
     }
 
@@ -78,9 +86,9 @@ public class TokenManagement {
                 isValid = true;
             }
         } catch (JwtException ex) {
-            LOG.info("Token is not valid!");
+            throw new InvalidTokenException(ErrorMessages.INVALID_TOKEN.getMessage());
         } catch (IllegalArgumentException ex) {
-            LOG.info("an error occurred during getting username from token");
+            throw new InvalidTokenException(ErrorMessages.CANNOT_RETRIEVE_USER_DATA.getMessage());
         }
         return isValid;
     }
@@ -97,11 +105,8 @@ public class TokenManagement {
     }
 
     public String resolveAccessToken(HttpServletRequest request) {
-        String AUTH_HEADER_PREFIX = "Bearer ";
-        String AUTHORIZATION_HEADER = "authorization";
-        String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
-        if (Objects.nonNull(bearerToken) && bearerToken.startsWith(AUTH_HEADER_PREFIX)) {
-            //constant
+        String bearerToken = request.getHeader(AUTHORIZATION_HEADER.getValue());
+        if (Objects.nonNull(bearerToken) && bearerToken.startsWith(AUTH_HEADER_PREFIX.getValue())) {
             return bearerToken.substring(7);
         }
         return null;

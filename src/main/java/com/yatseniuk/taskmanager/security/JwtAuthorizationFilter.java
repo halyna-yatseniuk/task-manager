@@ -1,5 +1,7 @@
 package com.yatseniuk.taskmanager.security;
 
+import com.yatseniuk.taskmanager.constants.ErrorMessages;
+import com.yatseniuk.taskmanager.exceptions.JWTAuthenticationException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,11 +40,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             } catch (ExpiredJwtException e) {
-                LOG.info("Token has expired: " + accessToken);
-                throw new RuntimeException("Expired token");
+                throw new JWTAuthenticationException(ErrorMessages.EXPIRED_TOKEN.getMessage());
             } catch (Exception e) {
-                LOG.info("JWT Authentication failed");
-                throw new RuntimeException("Authentication failed");
+                throw new JWTAuthenticationException(ErrorMessages.FAIL_TO_AUTHENTICATE.getMessage());
             }
         }
         filterChain.doFilter(request, response);
