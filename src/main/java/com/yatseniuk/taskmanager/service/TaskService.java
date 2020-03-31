@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.service;
 
-import com.yatseniuk.taskmanager.dto.TaskDTO;
-import com.yatseniuk.taskmanager.dto.TaskSaveDTO;
+import com.yatseniuk.taskmanager.dto.task.TaskDTO;
+import com.yatseniuk.taskmanager.dto.task.TaskSaveDTO;
 
 import java.util.List;
 

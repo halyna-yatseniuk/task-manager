@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.service;
 
 import com.yatseniuk.taskmanager.documents.User;
-import com.yatseniuk.taskmanager.dto.UserGeneralDTO;
+import com.yatseniuk.taskmanager.dto.user.UserGeneralDTO;
 
 public interface UserService {
     User findById(String id);
