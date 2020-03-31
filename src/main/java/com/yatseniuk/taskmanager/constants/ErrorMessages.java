@@ -10,7 +10,9 @@ public enum ErrorMessages {
     FAIL_TO_FIND_A_USER("There is no such a user"),
     FAIL_TO_FIND_A_TASK("There is no such a task"),
 
-    WRONG_TASK_ACTION("Wrong action was used while sharing task");
+    WRONG_TASK_ACTION("Wrong action was used while sharing task"),
+
+    UNAUTHORIZED("You have to be authorized to perform the action");
 
     private String message;
 

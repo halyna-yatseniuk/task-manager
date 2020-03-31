@@ -16,7 +16,7 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public void register(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         registrationService.save(userRegistrationDTO);
     }
