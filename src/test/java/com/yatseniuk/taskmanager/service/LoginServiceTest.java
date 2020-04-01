@@ -43,7 +43,7 @@ public class LoginServiceTest {
     }
 
     @Test
-    public void loginSuccess() {
+    public void testLoginSuccess() {
         Mockito.when(userRepository.findByEmail(Mockito.any(String.class))).thenReturn(Optional.of(user));
         Mockito.when(tokenManagement.generateAccessAndRefreshTokens(Mockito.any(String.class))).thenReturn(token);
         JwtTokenDTO jwtTokenDTO = loginService.login(userLoginDTO);
@@ -51,13 +51,13 @@ public class LoginServiceTest {
     }
 
     @Test(expected = BadLoginException.class)
-    public void loginWithWrongEmail() {
+    public void testLoginWithWrongEmail() {
         Mockito.when(userRepository.findByEmail(Mockito.any(String.class))).thenReturn(Optional.empty());
         loginService.login(userLoginDTO);
     }
 
     @Test(expected = BadLoginException.class)
-    public void loginWithWrongPassword() {
+    public void testLoginWithWrongPassword() {
         userLoginDTO.setPassword("anotherPassword");
         Mockito.when(userRepository.findByEmail(Mockito.any(String.class))).thenReturn(Optional.of(user));
         loginService.login(userLoginDTO);

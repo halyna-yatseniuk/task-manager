@@ -45,7 +45,7 @@ public class RegistrationServiceTests {
     }
 
     @Test
-    public void savePassed() {
+    public void testSavePassed() {
         Mockito.when(userRepository.findByEmail(Mockito.any(String.class))).thenReturn(Optional.empty());
         Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(user);
         Mockito.when(tokenManagement.generateAccessAndRefreshTokens(Mockito.any(String.class))).thenReturn(token);
@@ -54,20 +54,20 @@ public class RegistrationServiceTests {
     }
 
     @Test(expected = BadRegistrationException.class)
-    public void saveFail() {
+    public void testSaveFail() {
         Mockito.when(userRepository.findByEmail(Mockito.any(String.class))).thenReturn(Optional.of(user));
         registrationService.save(userRegistrationDTO);
     }
 
     @Test
-    public void matchEmailToPatternPassed() throws Exception {
+    public void testMatchEmailToPatternPassed() throws Exception {
         String result = Whitebox.invokeMethod(registrationService, "matchEmailToPattern",
                 user.getEmail());
         assertEquals(result, user.getEmail());
     }
 
     @Test(expected = BadRegistrationException.class)
-    public void matchEmailToPatternFailed() throws Exception {
+    public void testMatchEmailToPatternFailed() throws Exception {
         String invalidEmail = "invalidEmail";
         Whitebox.invokeMethod(registrationService, "matchEmailToPattern",
                 invalidEmail);

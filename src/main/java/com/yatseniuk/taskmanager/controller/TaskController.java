@@ -30,7 +30,7 @@ public class TaskController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<List<TaskDTO>> getAll(@PathVariable String id) {
+    public ResponseEntity<List<TaskDTO>> getAllByUserId(@PathVariable String id) {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.getAllByUserId(id));
     }
 
