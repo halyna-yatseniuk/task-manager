@@ -2,12 +2,9 @@
 It's Spring Boot RESTful application to manage tasks by Users which are stored in MongoDB. JWT token which is implemented provides the possibility of registration and login users to the application with additional session security. Tasks can be created with the possibility to share them between users, also edited and deleted. Task sharing feature has a validation of not sharing the same ticket to a user who is already a viewer or to a task owner.
 
 ### Required to install:
-```sh
-1. Java 8
-```
-```sh
-2. MongoDB Community server and Compass client
-```
+* Java 8
+* MongoDB Community server and Compass client
+
 ### To launch application *local* do further steps:
 ```sh
 1. Clone repository on your local machine from git@github.com:halyna-yatseniuk/task-manager.git
@@ -19,11 +16,9 @@ It's Spring Boot RESTful application to manage tasks by Users which are stored i
 3. Log in to Compass with localhost and port 27017
 ```
 ```sh
-4. Create a database called task-manager and 2 collections in it: users, tasks
+4. Run application
 ```
-```sh
-5. Run application
-```
+
 ### Authorization steps:
 * Perform registration/login API call to get Bearer token
 * Copy Bearer token
