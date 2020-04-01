@@ -3,10 +3,10 @@ It's Spring Boot RESTful application to manage tasks by Users which are stored i
 
 ### Required to install:
 ```sh
-1. Java 8
+* Java 8
 ```
 ```sh
-2. MongoDB Community server and Compass client
+* MongoDB Community server and Compass client
 ```
 ### To launch application *local* do further steps:
 ```sh
@@ -19,11 +19,9 @@ It's Spring Boot RESTful application to manage tasks by Users which are stored i
 3. Log in to Compass with localhost and port 27017
 ```
 ```sh
-4. Create a database called task-manager and 2 collections in it: users, tasks
+4. Run application
 ```
-```sh
-5. Run application
-```
+
 ### Authorization steps:
 * Perform registration/login API call to get Bearer token
 * Copy Bearer token
