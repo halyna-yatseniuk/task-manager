@@ -1,6 +1,7 @@
 package com.yatseniuk.taskmanager.dto.task;
 
 import com.yatseniuk.taskmanager.dto.user.UserGeneralDTO;
+import com.yatseniuk.taskmanager.dto.viewPermission.PermissionGeneralDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +15,8 @@ import java.util.Set;
 public class TaskDTO {
     private String title;
     private String description;
-    private String owner;
+    private UserGeneralDTO owner;
     private LocalDateTime creationDateTime;
     private LocalDateTime modificationDateTime;
-    private Set<UserGeneralDTO> viewers;
+    private Set<PermissionGeneralDTO> viewers;
 }

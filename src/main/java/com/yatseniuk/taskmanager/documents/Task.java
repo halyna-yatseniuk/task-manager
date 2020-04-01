@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode
@@ -16,13 +16,12 @@ import java.util.Set;
 @Document(value = "tasks")
 public class Task {
     @Id
-    public String id;
-    public String title;
-    public String description;
-    public LocalDateTime creationDateTime;
-    public LocalDateTime modificationDateTime;
+    private String id;
+    private String title;
+    private String description;
+    private LocalDateTime creationDateTime;
+    private LocalDateTime modificationDateTime;
     @DBRef
-    public User owner;
-    @DBRef
-    public Set<User> viewers;
+    private User owner;
+    private List<ViewPermission> viewers;
 }

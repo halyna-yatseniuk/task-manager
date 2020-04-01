@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class TaskSaveDTO {
     private String title;
     private String description;
-    private String userId;
 }

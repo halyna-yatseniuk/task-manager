@@ -8,9 +8,11 @@ public enum ErrorMessages {
     FAIL_TO_LOGIN_WITH_WRONG_PASSWORD("Entered password is not correct"),
 
     FAIL_TO_FIND_A_USER("There is no such a user"),
+    NOT_FOUND_USER_WITH_ENTERED_EMAIL("User with entered email is not found"),
     FAIL_TO_FIND_A_TASK("There is no such a task"),
 
     WRONG_TASK_ACTION("Wrong action was used while sharing task"),
+    USER_ALREADY_ACCESS_TASK("User already has ability to view current task"),
 
     UNAUTHORIZED("You have to be authorized to perform the action"),
     EXPIRED_TOKEN("Token is expired"),

@@ -2,6 +2,7 @@ package com.yatseniuk.taskmanager.service;
 
 import com.yatseniuk.taskmanager.dto.task.TaskDTO;
 import com.yatseniuk.taskmanager.dto.task.TaskSaveDTO;
+import com.yatseniuk.taskmanager.dto.viewPermission.PermissionSaveDTO;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface TaskService {
 
     void delete(String id);
 
-    void shareTaskWithUser(String userId, String taskId, String action);
+    void shareTaskWithUser(String action, PermissionSaveDTO permissionSaveDTO);
 }

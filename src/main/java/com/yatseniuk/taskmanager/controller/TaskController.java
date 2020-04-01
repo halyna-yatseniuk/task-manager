@@ -2,6 +2,7 @@ package com.yatseniuk.taskmanager.controller;
 
 import com.yatseniuk.taskmanager.dto.task.TaskDTO;
 import com.yatseniuk.taskmanager.dto.task.TaskSaveDTO;
+import com.yatseniuk.taskmanager.dto.viewPermission.PermissionSaveDTO;
 import com.yatseniuk.taskmanager.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +44,13 @@ public class TaskController {
         taskService.delete(id);
     }
 
-//    @PostMapping("/{taskId}/viewer/{userId}")
+    //    @PostMapping("/{taskId}/viewer/{userId}")
 //    public void share(@PathVariable String userId, @PathVariable String taskId) {
 //        taskService.addPeople(userId, taskId);
 //    }
-    @PostMapping("/{taskId}/viewer/{userId}")
-    public void share(@PathVariable String userId, @PathVariable String taskId, @RequestParam String action) {
-        taskService.shareTaskWithUser(userId, taskId, action);
+    @PostMapping("/")
+    public void share(@RequestParam String action, @RequestBody PermissionSaveDTO permissionSaveDTO) {
+        taskService.shareTaskWithUser(action, permissionSaveDTO);
     }
+//    @PathVariable String userId, @PathVariable String taskId,
 }

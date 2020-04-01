@@ -7,4 +7,6 @@ public interface UserService {
     User findById(String id);
 
     UserGeneralDTO getById(String id);
+
+    User findByEmail(String email);
 }
