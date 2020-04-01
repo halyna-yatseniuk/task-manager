@@ -1,6 +1,6 @@
 package com.yatseniuk.taskmanager.repository;
 
-import com.yatseniuk.taskmanager.documents.User;
+import com.yatseniuk.taskmanager.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

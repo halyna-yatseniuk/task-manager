@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.service.implementation;
 
 import com.yatseniuk.taskmanager.constants.ErrorMessages;
-import com.yatseniuk.taskmanager.documents.User;
+import com.yatseniuk.taskmanager.entity.User;
 import com.yatseniuk.taskmanager.dto.token.JwtTokenDTO;
 import com.yatseniuk.taskmanager.dto.user.UserLoginDTO;
 import com.yatseniuk.taskmanager.exceptions.BadLoginException;
@@ -10,6 +10,7 @@ import com.yatseniuk.taskmanager.security.TokenManagement;
 import com.yatseniuk.taskmanager.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,7 @@ public class LoginServiceImpl implements LoginService {
     private UserRepository userRepository;
     private TokenManagement tokenManagement;
 
+    @Autowired
     public LoginServiceImpl(UserRepository userRepository, TokenManagement tokenManagement) {
         this.userRepository = userRepository;
         this.tokenManagement = tokenManagement;

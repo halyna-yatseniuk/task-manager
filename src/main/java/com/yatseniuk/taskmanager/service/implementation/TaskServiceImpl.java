@@ -1,12 +1,12 @@
 package com.yatseniuk.taskmanager.service.implementation;
 
 import com.yatseniuk.taskmanager.constants.ErrorMessages;
-import com.yatseniuk.taskmanager.documents.Task;
-import com.yatseniuk.taskmanager.documents.User;
-import com.yatseniuk.taskmanager.documents.ViewPermission;
-import com.yatseniuk.taskmanager.dto.task.TaskDTO;
-import com.yatseniuk.taskmanager.dto.task.TaskSaveDTO;
+import com.yatseniuk.taskmanager.dto.tasks.TaskDTO;
+import com.yatseniuk.taskmanager.dto.tasks.TaskSaveDTO;
 import com.yatseniuk.taskmanager.dto.viewPermission.PermissionSaveDTO;
+import com.yatseniuk.taskmanager.entity.Task;
+import com.yatseniuk.taskmanager.entity.User;
+import com.yatseniuk.taskmanager.entity.ViewPermission;
 import com.yatseniuk.taskmanager.exceptions.InvalidViewerException;
 import com.yatseniuk.taskmanager.exceptions.NotFoundEntityException;
 import com.yatseniuk.taskmanager.exceptions.WrongActionException;
@@ -59,7 +59,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskDTO getById(String id) {
+    public TaskDTO getDTOById(String id) {
         LOG.info("Getting a task with id - {}", id);
         return modelMapper.map(findById(id), TaskDTO.class);
     }
@@ -72,6 +72,7 @@ public class TaskServiceImpl implements TaskService {
         return allTasks;
     }
 
+    @Override
     public List<TaskDTO> getAllWhereUserIsOwner(String userId) {
         LOG.info("Search all tasks by user id where user is a creator -{}", userId);
         List<Task> tasks = taskRepository.findAllByOwnerId(userId);
@@ -80,6 +81,7 @@ public class TaskServiceImpl implements TaskService {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<TaskDTO> getAllWhereUserIsViewer(String userId) {
         LOG.info("Search all tasks by user id where user is a viewer -{}", userId);
         List<String> ids = getTasksIdsFromViewPermissions(userId);

@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        com.yatseniuk.taskmanager.documents.User user = userRepository.findByEmail(email).orElseThrow(
+        com.yatseniuk.taskmanager.entity.User user = userRepository.findByEmail(email).orElseThrow(
                 () -> new NotFoundEntityException(ErrorMessages.FAIL_TO_FIND_A_USER.getMessage()));
         return new User(user.getEmail(), user.getPassword(), emptyList());
     }

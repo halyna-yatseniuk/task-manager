@@ -28,7 +28,6 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody UserLoginDTO userLoginDTO, HttpServletResponse response) {
-
         JwtTokenDTO jwtTokenDTO = loginService.login(userLoginDTO);
         response.setHeader(AUTHORIZATION_HEADER.getValue(),
                 AUTH_HEADER_PREFIX.getValue() + jwtTokenDTO.getAccessToken());
@@ -40,7 +39,6 @@ public class LoginController {
     @PostMapping("/refresh")
     public ResponseEntity<Object> refresh(@RequestHeader(name = "refreshToken") String refresh,
                                           HttpServletResponse response) {
-
         JwtTokenDTO refreshedToken = tokenManagement.refreshAccessAndRefreshTokens(refresh);
         response.setHeader(AUTHORIZATION_HEADER.getValue(),
                 AUTH_HEADER_PREFIX.getValue() + refreshedToken.getAccessToken());
