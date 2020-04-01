@@ -82,14 +82,14 @@ public class TaskServiceImpl implements TaskService {
 
     public List<TaskDTO> getAllWhereUserIsViewer(String userId) {
         LOG.info("Search all tasks by user id where user is a viewer -{}", userId);
-        List<String> ids = gettingTaskIdsFromViewPermissions(userId);
+        List<String> ids = getTasksIdsFromViewPermissions(userId);
         List<Task> tasks = taskRepository.findAllByIdIsIn(ids);
         return tasks.stream()
                 .map(task -> modelMapper.map(task, TaskDTO.class))
                 .collect(Collectors.toList());
     }
 
-    public List<String> gettingTaskIdsFromViewPermissions(String userId) {
+    public List<String> getTasksIdsFromViewPermissions(String userId) {
         LOG.info("Search task ids from all view permissions where user is a viewer");
         List<Task> tasks = taskRepository.findAll();
         return tasks.stream()

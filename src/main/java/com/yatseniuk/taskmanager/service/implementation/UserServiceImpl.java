@@ -25,21 +25,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(String id) {
-        LOG.info("Finding a user with id - {}", id);
-        return userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundEntityException(ErrorMessages.FAIL_TO_FIND_A_USER.getMessage()));
-    }
-
-    public UserGeneralDTO getById(String id) {
+    public UserGeneralDTO getDTOById(String id) {
         LOG.info("Getting a user with id - {}", id);
         return modelMapper.map(findById(id), UserGeneralDTO.class);
     }
 
+    @Override
     public User findByEmail(String email) {
         LOG.info("Getting a user with email - {} ", email);
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new NotFoundEntityException(
                         ErrorMessages.NOT_FOUND_USER_WITH_ENTERED_EMAIL.getMessage()));
+    }
+
+    private User findById(String id) {
+        LOG.info("Finding a user with id - {}", id);
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundEntityException(ErrorMessages.FAIL_TO_FIND_A_USER.getMessage()));
     }
 }

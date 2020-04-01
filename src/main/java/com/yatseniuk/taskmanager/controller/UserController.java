@@ -18,6 +18,6 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<UserGeneralDTO> getById(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.getById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getDTOById(id));
     }
 }
