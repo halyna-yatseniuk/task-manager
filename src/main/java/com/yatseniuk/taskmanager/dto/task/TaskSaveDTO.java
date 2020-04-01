@@ -1,4 +1,4 @@
-package com.yatseniuk.taskmanager.dto;
+package com.yatseniuk.taskmanager.dto.task;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLoginDTO {
-    private String email;
-    private String password;
+public class TaskSaveDTO {
+    private String title;
+    private String description;
 }

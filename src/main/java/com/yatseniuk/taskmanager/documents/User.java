@@ -5,14 +5,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "users")
+@Document(value = "users")
 public class User {
     @Id
     private String id;
@@ -21,5 +20,4 @@ public class User {
     private String email;
     private String password;
     private LocalDate registrationDate;
-    private List<Task> tasks;
 }
