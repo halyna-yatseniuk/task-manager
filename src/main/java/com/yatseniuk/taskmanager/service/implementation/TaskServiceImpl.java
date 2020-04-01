@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,22 +65,39 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDTO> getAllByUserId(String id) {
-        LOG.info("Search all tasks for user with id - {}", id);
-        List<Task> tasks = taskRepository.findAllByOwnerId(id);
+    public List<TaskDTO> getAllByUserId(String userId) {
+        LOG.info("Search all tasks for user with id - {}", userId);
+        List<TaskDTO> allTasks = getAllWhereUserIsOwner(userId);
+        allTasks.addAll(getAllWhereUserIsViewer(userId));
+        return allTasks;
+    }
+
+    public List<TaskDTO> getAllWhereUserIsOwner(String userId) {
+        LOG.info("Search all tasks by user id where user is a creator -{}", userId);
+        List<Task> tasks = taskRepository.findAllByOwnerId(userId);
         return tasks.stream()
                 .map(task -> modelMapper.map(task, TaskDTO.class))
                 .collect(Collectors.toList());
     }
 
-    //TODO
-    public List<TaskDTO> getAllWhereUserIsOwner(String id) {
-        return null;
+    public List<TaskDTO> getAllWhereUserIsViewer(String userId) {
+        LOG.info("Search all tasks by user id where user is a viewer -{}", userId);
+        List<String> ids = gettingTaskIdsFromViewPermissions(userId);
+        List<Task> tasks = taskRepository.findAllByIdIsIn(ids);
+        return tasks.stream()
+                .map(task -> modelMapper.map(task, TaskDTO.class))
+                .collect(Collectors.toList());
     }
 
-    //TODO
-    public List<TaskDTO> getAllWhereUserIsViewer(String id) {
-        return null;
+    public List<String> gettingTaskIdsFromViewPermissions(String userId) {
+        LOG.info("Search task ids from all view permissions where user is a viewer");
+        List<Task> tasks = taskRepository.findAll();
+        return tasks.stream()
+                .map(Task::getViewers)
+                .flatMap(Collection::stream)
+                .filter(f -> f.getViewer().getId().equals(userId))
+                .map(ViewPermission::getTaskId)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -146,6 +164,7 @@ public class TaskServiceImpl implements TaskService {
         return ViewPermission.builder()
                 .sharedDate(LocalDateTime.now())
                 .performer(userService.findByEmail(principal.getName()))
+                .taskId(permissionSaveDTO.getSharedTaskId())
                 .viewer(userService.findByEmail(permissionSaveDTO.getViewerEmail()))
                 .build();
     }

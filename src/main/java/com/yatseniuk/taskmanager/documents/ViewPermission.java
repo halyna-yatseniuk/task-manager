@@ -15,5 +15,6 @@ public class ViewPermission {
     private User performer;
     @DBRef
     private User viewer;
+    private String taskId;
     private LocalDateTime sharedDate;
 }

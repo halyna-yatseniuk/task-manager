@@ -34,6 +34,16 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.getAllByUserId(id));
     }
 
+    @GetMapping("/owner/{id}")
+    public ResponseEntity<List<TaskDTO>> getAllWhereUserIsOwner(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.getAllWhereUserIsOwner(id));
+    }
+
+    @GetMapping("/viewer/{id}")
+    public ResponseEntity<List<TaskDTO>> getAllWhereUserIsViewer(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.getAllWhereUserIsViewer(id));
+    }
+
     @PatchMapping("/{id}")
     public void edit(@PathVariable String id, @RequestBody TaskSaveDTO taskSaveDTO) {
         taskService.edit(id, taskSaveDTO);
@@ -44,13 +54,8 @@ public class TaskController {
         taskService.delete(id);
     }
 
-    //    @PostMapping("/{taskId}/viewer/{userId}")
-//    public void share(@PathVariable String userId, @PathVariable String taskId) {
-//        taskService.addPeople(userId, taskId);
-//    }
     @PostMapping("/")
     public void share(@RequestParam String action, @RequestBody PermissionSaveDTO permissionSaveDTO) {
         taskService.shareTaskWithUser(action, permissionSaveDTO);
     }
-//    @PathVariable String userId, @PathVariable String taskId,
 }

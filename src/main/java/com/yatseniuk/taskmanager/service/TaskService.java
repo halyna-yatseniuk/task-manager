@@ -13,6 +13,10 @@ public interface TaskService {
 
     List<TaskDTO> getAllByUserId(String id);
 
+    List<TaskDTO> getAllWhereUserIsOwner(String id);
+
+    List<TaskDTO> getAllWhereUserIsViewer(String id);
+
     void edit(String id, TaskSaveDTO taskSaveDTO);
 
     void delete(String id);
