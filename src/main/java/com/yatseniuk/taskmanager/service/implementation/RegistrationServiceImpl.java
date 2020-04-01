@@ -2,7 +2,7 @@ package com.yatseniuk.taskmanager.service.implementation;
 
 import com.yatseniuk.taskmanager.constants.ErrorMessages;
 import com.yatseniuk.taskmanager.constants.Validations;
-import com.yatseniuk.taskmanager.documents.User;
+import com.yatseniuk.taskmanager.entity.User;
 import com.yatseniuk.taskmanager.dto.token.JwtTokenDTO;
 import com.yatseniuk.taskmanager.dto.user.UserRegistrationDTO;
 import com.yatseniuk.taskmanager.exceptions.BadRegistrationException;

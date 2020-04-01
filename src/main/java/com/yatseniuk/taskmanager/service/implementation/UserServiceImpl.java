@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.service.implementation;
 
 import com.yatseniuk.taskmanager.constants.ErrorMessages;
-import com.yatseniuk.taskmanager.documents.User;
+import com.yatseniuk.taskmanager.entity.User;
 import com.yatseniuk.taskmanager.dto.user.UserGeneralDTO;
 import com.yatseniuk.taskmanager.exceptions.NotFoundEntityException;
 import com.yatseniuk.taskmanager.repository.UserRepository;

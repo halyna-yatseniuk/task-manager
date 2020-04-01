@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.service;
 
-import com.yatseniuk.taskmanager.documents.User;
 import com.yatseniuk.taskmanager.dto.user.UserGeneralDTO;
+import com.yatseniuk.taskmanager.entity.User;
 import com.yatseniuk.taskmanager.exceptions.NotFoundEntityException;
 import com.yatseniuk.taskmanager.repository.UserRepository;
 import com.yatseniuk.taskmanager.service.implementation.UserServiceImpl;
@@ -65,14 +65,14 @@ public class UserServiceTests {
 
     @Test
     public void testFindByIdPassed() throws Exception {
-        PowerMockito.doReturn(Optional.of(user)).when(userRepository, "findById", Mockito.any(String.class));
+        Mockito.when(userRepository.findById(Mockito.any(String.class))).thenReturn(Optional.of(user));
         User result = Whitebox.invokeMethod(userService, "findById", user.getId());
         assertEquals(user, result);
     }
 
     @Test(expected = NotFoundEntityException.class)
     public void testFindByIdFail() throws Exception {
-        PowerMockito.doReturn(Optional.empty()).when(userRepository, "findById", Mockito.any(String.class));
+        Mockito.when(userRepository.findById(Mockito.any(String.class))).thenReturn(Optional.empty());
         Whitebox.invokeMethod(userService, "findById", user.getId());
     }
 }

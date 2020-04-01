@@ -1,4 +1,4 @@
-package com.yatseniuk.taskmanager.documents;
+package com.yatseniuk.taskmanager.entity;
 
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.DBRef;

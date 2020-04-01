@@ -1,6 +1,6 @@
 package com.yatseniuk.taskmanager.service;
 
-import com.yatseniuk.taskmanager.documents.User;
+import com.yatseniuk.taskmanager.entity.User;
 import com.yatseniuk.taskmanager.dto.user.UserGeneralDTO;
 
 public interface UserService {

@@ -1,4 +1,4 @@
-package com.yatseniuk.taskmanager.dto.task;
+package com.yatseniuk.taskmanager.dto.tasks;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.service;
 
-import com.yatseniuk.taskmanager.dto.task.TaskDTO;
-import com.yatseniuk.taskmanager.dto.task.TaskSaveDTO;
+import com.yatseniuk.taskmanager.dto.tasks.TaskDTO;
+import com.yatseniuk.taskmanager.dto.tasks.TaskSaveDTO;
 import com.yatseniuk.taskmanager.dto.viewPermission.PermissionSaveDTO;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public interface TaskService {
     void save(TaskSaveDTO taskSaveDTO);
 
-    TaskDTO getById(String id);
+    TaskDTO getDTOById(String id);
 
     List<TaskDTO> getAllByUserId(String id);
 

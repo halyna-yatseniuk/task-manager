@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.controller;
 
-import com.yatseniuk.taskmanager.dto.task.TaskDTO;
-import com.yatseniuk.taskmanager.dto.task.TaskSaveDTO;
+import com.yatseniuk.taskmanager.dto.tasks.TaskDTO;
+import com.yatseniuk.taskmanager.dto.tasks.TaskSaveDTO;
 import com.yatseniuk.taskmanager.dto.viewPermission.PermissionSaveDTO;
 import com.yatseniuk.taskmanager.service.TaskService;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TaskDTO> getById(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(taskService.getById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.getDTOById(id));
     }
 
     @GetMapping("/user/{id}")

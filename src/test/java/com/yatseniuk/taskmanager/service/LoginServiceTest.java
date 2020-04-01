@@ -1,6 +1,6 @@
 package com.yatseniuk.taskmanager.service;
 
-import com.yatseniuk.taskmanager.documents.User;
+import com.yatseniuk.taskmanager.entity.User;
 import com.yatseniuk.taskmanager.dto.token.JwtTokenDTO;
 import com.yatseniuk.taskmanager.dto.user.UserLoginDTO;
 import com.yatseniuk.taskmanager.exceptions.BadLoginException;

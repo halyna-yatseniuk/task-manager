@@ -27,7 +27,6 @@ public class RegistrationController {
     @PostMapping("/sign-up")
     public ResponseEntity<Object> register(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO,
                                            HttpServletResponse response) {
-
         JwtTokenDTO jwtTokenDTO = registrationService.save(userRegistrationDTO);
         response.setHeader(AUTHORIZATION_HEADER.getValue(),
                 AUTH_HEADER_PREFIX.getValue() + jwtTokenDTO.getAccessToken());
