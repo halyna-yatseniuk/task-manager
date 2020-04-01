@@ -1,7 +1,7 @@
 package com.yatseniuk.taskmanager.service.implementation;
 
 import com.yatseniuk.taskmanager.constants.ErrorMessages;
-import com.yatseniuk.taskmanager.constants.ValidationPattern;
+import com.yatseniuk.taskmanager.constants.Validations;
 import com.yatseniuk.taskmanager.documents.User;
 import com.yatseniuk.taskmanager.dto.token.JwtTokenDTO;
 import com.yatseniuk.taskmanager.dto.user.UserRegistrationDTO;
@@ -52,7 +52,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     private String matchEmailToPattern(String email) {
         LOG.info("Matching email to email pattern {}", email);
 
-        Pattern pattern = Pattern.compile(ValidationPattern.EMAIL_PATTERN);
+        Pattern pattern = Pattern.compile(Validations.EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
 
         if (!matcher.matches()) {

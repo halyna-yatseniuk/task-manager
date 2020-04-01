@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import static com.yatseniuk.taskmanager.constants.ConstantValues.*;
 
@@ -24,7 +25,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<Object> register(@RequestBody UserRegistrationDTO userRegistrationDTO,
+    public ResponseEntity<Object> register(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO,
                                            HttpServletResponse response) {
 
         JwtTokenDTO jwtTokenDTO = registrationService.save(userRegistrationDTO);

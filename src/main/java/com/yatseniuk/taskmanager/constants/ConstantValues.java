@@ -1,8 +1,6 @@
 package com.yatseniuk.taskmanager.constants;
 
 public enum ConstantValues {
-    ADD("add"),
-    REMOVE("remove"),
     GLOBAL_SCOPE("global"),
     SCOPE_DESCRIPTION("accessEverything"),
     JWT("JWT"),
